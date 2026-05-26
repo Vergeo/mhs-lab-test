@@ -11,7 +11,9 @@ if (!mySqlUrl) {
 }
 
 const initDB = async () => {
-	await pool.query("CREATE TABLE IF NOT EXIST counter (id INT PRIMARY KEY, value INT NOT NULL);");
+	await pool.query(
+		"CREATE TABLE IF NOT EXISTS counter (id INT PRIMARY KEY, value INT NOT NULL);",
+	);
 	await pool.query("INSERT INTO counter (id, value) VALUES (1, 0) ON DUPLICATE KEY;");
 };
 
