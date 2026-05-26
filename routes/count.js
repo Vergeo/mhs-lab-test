@@ -15,7 +15,7 @@ const initDB = async () => {
 		"CREATE TABLE IF NOT EXISTS counter (id INT PRIMARY KEY, value INT NOT NULL);",
 	);
 	await pool.query(
-		"INSERT INTO counter (id, value) VALUES (1, 0) ON DUPLICATE KEY value = value;",
+		"INSERT INTO counter (id, value) VALUES (1, 0) ON DUPLICATE KEY UPDATE value = value;",
 	);
 };
 
