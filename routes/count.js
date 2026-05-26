@@ -1,5 +1,5 @@
 var express = require("express");
-var mysql = require("mysql2/promise");
+var mysql = require("mysql2/promise.js");
 require("dotenv").config();
 
 var router = express.Router();
