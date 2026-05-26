@@ -10,6 +10,11 @@ if (!mySqlUrl) {
 	process.exit(1);
 }
 
+const initDB = async () => {
+	await pool.query("CREATE TABLE IF NOT EXIST counter (id INT PRIMARY KEY, value INT NOT NULL);");
+	await pool.query("INSERT INTO counter (id, value) VALUES (1, 0) ON DUPLICATE KEY;");
+};
+
 var pool = mysql.createPool(mySqlUrl);
 var dbReady = initDB();
 
@@ -42,10 +47,5 @@ router.post("/increase", async () => {
 		next(err);
 	}
 });
-
-const initDB = async () => {
-	await pool.query("CREATE TABLE IF NOT EXIST counter (id INT PRIMARY KEY, value INT NOT NULL);");
-	await pool.query("INSERT INTO counter (id, value) VALUES (1, 0) ON DUPLICATE KEY;");
-};
 
 module.exports = router;
